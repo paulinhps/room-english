@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -15,6 +16,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
+// todo: Verificar como configurar correto pra não aparecer o warning
+#pragma warning disable ASP0014
+app.UseEndpoints(endpoints =>
+    endpoints.MapControllers()
+);
+#pragma warning restore ASP0014
 
 var summaries = new[]
 {
