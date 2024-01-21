@@ -1,8 +1,20 @@
+using System.IO.Compression;
+using Microsoft.AspNetCore.ResponseCompression;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
+
+// Api Request Compression
+builder.Services.AddResponseCompression(options =>
+    options.Providers.Add<GzipCompressionProvider>()
+);
+builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+    options.Level = CompressionLevel.Optimal
+);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,6 +29,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+app.UseResponseCompression();
 
 // todo: Verificar como configurar correto pra não aparecer o warning
 #pragma warning disable ASP0014
