@@ -4,13 +4,13 @@ using RoomsEnglish.Domain.SharedContext.ValueObjects;
 
 namespace RoomsEnglish.Domain.UserContext.Entities;
 
-public class ApplicationUser : Entity
+public abstract class ApplicationUser : Entity
 {
     public string Name { get; private set; }
     public Email Email { get; private set; }
     public string Password { get; private set; }
     
-    public ApplicationUser(string name, Email email, string password)
+    protected ApplicationUser(string name, Email email, string password)
     {
         Name = name;
         Email = email;

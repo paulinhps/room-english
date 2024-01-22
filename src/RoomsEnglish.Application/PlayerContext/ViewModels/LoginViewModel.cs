@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace RoomsEnglish.Application.AccountContext.LoginIn;
+namespace RoomsEnglish.Application.PlayerContext.ViewModels;
 
 public record LoginViewModel
 {
