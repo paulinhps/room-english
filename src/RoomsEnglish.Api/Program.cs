@@ -1,4 +1,6 @@
 using System.IO.Compression;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,10 @@ builder.Services.AddResponseCompression(options =>
 );
 builder.Services.Configure<GzipCompressionProviderOptions>(options =>
     options.Level = CompressionLevel.Optimal
+);
+
+builder.Services.Configure<JsonOptions>(options =>
+    options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
 );
 
 builder.Services.AddEndpointsApiExplorer();
