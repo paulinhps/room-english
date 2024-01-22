@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RoomsEnglish.Application\RoomsEnglish.Application.csproj" />
     <ProjectReference Include="..\RoomsEnglish.Infraestructure\RoomsEnglish.Infraestructure.csproj" />
   </ItemGroup>
 
