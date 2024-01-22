@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RoomsEnglish.Api.ViewModels;
+using RoomsEnglish.Application.RoomContext.ViewModels;
 
 namespace RoomsEnglish.Api.Controllers;
 

@@ -1,4 +1,4 @@
-﻿namespace RoomsEnglish.Api.ViewModels;
+﻿namespace RoomsEnglish.Application.RoomContext.ViewModels;
 
 public class RoomViewModel
 {
