@@ -42,12 +42,8 @@ app.UseRouting();
 
 app.UseResponseCompression();
 
-// todo: Verificar como configurar correto pra não aparecer o warning
-#pragma warning disable ASP0014
-app.UseEndpoints(endpoints =>
-    endpoints.MapControllers()
-);
-#pragma warning restore ASP0014
+//TODO: Refactor this controllers from MinimalApi Endpoints
+app.MapControllers();
 
 app.MapAuthEndpoints();
 
