@@ -2,10 +2,15 @@
 
 public class Player
 {
-    public string Name { get; set; }
+    const int QtPointsForLeveling = 100;
 
-    public Player(string name)
+    public string Name { get; set; }
+    public int Level => (int)(Experience / QtPointsForLeveling);
+    public long Experience { get; set; } = 0;
+
+    public Player(string name, long experience)
     {
         Name = name;
+        Experience = experience;
     }
 }
