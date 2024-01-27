@@ -13,5 +13,7 @@ public class Email : ValueObject
         yield return Address;
     }
 
+    public override string ToString() => Address;
+
     public static implicit operator Email(string emailAdress) => new(emailAdress);
 }

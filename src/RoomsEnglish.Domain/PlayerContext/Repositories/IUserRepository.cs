@@ -4,5 +4,6 @@ namespace RoomsEnglish.Domain.AccountContext.Repositories;
 
 public interface IUserRepository
 {
-    Task<ApplicationUser> FindUserByEmailAsync(string userName, CancellationToken cancellationToken);
+    Task<IApplicationUser> FindUserByEmailAsync(string userEmail, CancellationToken cancellationToken);
+
 }

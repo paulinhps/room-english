@@ -4,6 +4,9 @@ namespace RoomsEnglish.Domain.AccountContext.Services;
 
 public interface ISecurityService
 {
-    Task<string> GetAuthToken(ApplicationUser user);
-    bool IsValidUser(ApplicationUser? user);
+    string GenerateHash(string plainPassword);
+    string GenerateToken(IApplicationUser user);
+    bool IsValidUser(IApplicationUser? user, string textPlain);
+
+    Password GeneratePassword(string textPlain);
 }
