@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RoomsEnglish.Domain.AccountContext.Repositories;
 using RoomsEnglish.Domain.AccountContext.Services;
 using RoomsEnglish.Infraestructure.AccountContext.Repositories;
+using RoomsEnglish.Infraestructure.PlayerContext.Services;
 using RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 
 namespace RoomsEnglish.Infraestructure.DependencyInjection;
@@ -14,7 +15,7 @@ public static class InfraestructureServicesExtensions
     {
         services.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+            cfg.RegisterServicesFromAssemblies(AssemblyInfo.Assembly);
 
             cfg.AddOpenBehavior(typeof(ValidatonCommandBehavior<,>));
 
@@ -31,6 +32,7 @@ public static class InfraestructureServicesExtensions
 
     private static IServiceCollection AddRepositories(this IServiceCollection services) {
 
+        services.AddScoped<IPlayerRepository, PlayerRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
 
         return services;

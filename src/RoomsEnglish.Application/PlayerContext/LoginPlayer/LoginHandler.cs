@@ -23,12 +23,11 @@ public class LoginHandler : IRequestHandler<LoginCommand, LoginResult>
         // TODO: Implements a AuthHandler
         // 1 - Check If Command is Valid (We will use a Behiavor process)
         // 2 - Validate User Credentials
-        ApplicationUser user = default!;
+        IApplicationUser user = default!;
 
         try
         {
             user = await _userRepository.FindUserByEmailAsync(request.Username, cancellationToken);
-
         }
         catch (Exception ex)
         {
@@ -36,12 +35,12 @@ public class LoginHandler : IRequestHandler<LoginCommand, LoginResult>
             // TODO: Implements error results
         }
 
-        if (!_securityService.IsValidUser(user))
+        if (!_securityService.IsValidUser(user, request.Password))
         {
             // TODO: Implements error results
         }
         // 3 - Generate AuthToken
-        string authToken = await _securityService.GetAuthToken(user);
+        string authToken = _securityService.GenerateToken(user);
 
         // 4 - Make a AuthUserResult
         // TODO: Change this to Autommaper
