@@ -3,7 +3,7 @@ using MediatR;
 using RoomsEnglish.Application.PlayerContext.LoginPlayer;
 using RoomsEnglish.Application.PlayerContext.ViewModels;
 
-namespace RoomsEnglish.Api.AccountContext;
+namespace RoomsEnglish.Api.PlayerContext;
 
 public static class AuthEndpoints
 {
