@@ -38,7 +38,8 @@ public static class InfraestructureServicesExtensions
         return services;
     }
 
-    private static IServiceCollection AddRepositories(this IServiceCollection services) {
+    private static IServiceCollection AddRepositories(this IServiceCollection services)
+    {
 
         services.AddScoped<IPlayerRepository, PlayerRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
@@ -46,10 +47,11 @@ public static class InfraestructureServicesExtensions
         return services;
     }
 
-    private static IServiceCollection AddApplicationServices(this IServiceCollection services) {
-        
+    private static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    {
+
         services.AddSingleton<ISecurityService, SecurityService>();
-        
+
         return services;
     }
 

@@ -4,7 +4,7 @@ namespace RoomsEnglish.Application.PlayerContext.ViewModels;
 
 public record LoginViewModel
 {
-    [Required(ErrorMessage = "Username is required")]
+    [Required(ErrorMessage = "{0} is required")]
     [EmailAddress]
     public string Username { get; set; } = null!;
 

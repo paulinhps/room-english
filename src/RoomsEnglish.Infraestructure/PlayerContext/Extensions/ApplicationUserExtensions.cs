@@ -6,7 +6,7 @@ namespace RoomsEnglish.Infraestructure.PlayerContext.Extensions;
 
 public static class ApplicationUserExtensions
 {
-    public static ClaimsIdentity GetClaimsIdentity(this IApplicationUser user) 
+    public static ClaimsIdentity GetClaimsIdentity(this IApplicationUser user)
     => new ClaimsIdentity(new[
         ] {
             new Claim(ClaimTypes.NameIdentifier, user.Email.ToString()!),

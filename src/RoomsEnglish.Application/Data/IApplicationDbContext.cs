@@ -6,6 +6,6 @@ namespace RoomsEnglish.Application.Data;
 
 public interface IApplicationDbContext
 {
-    DbSet<ApplicationUser> Users {get;}
+    DbSet<ApplicationUser> Users { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

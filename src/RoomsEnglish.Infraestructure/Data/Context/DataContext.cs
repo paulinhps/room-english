@@ -6,8 +6,8 @@ namespace RoomsEnglish.Infraestructure.Data.Context;
 
 public class DataContext : DbContext, IApplicationDbContext
 {
-    public DataContext(DbContextOptions<DataContext> opt) 
-    : base(opt){}
+    public DataContext(DbContextOptions<DataContext> opt)
+    : base(opt) { }
 
     public DbSet<ApplicationUser> Users => Set<ApplicationUser>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)

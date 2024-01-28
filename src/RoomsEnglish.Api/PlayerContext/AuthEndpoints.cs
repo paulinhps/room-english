@@ -7,9 +7,11 @@ namespace RoomsEnglish.Api.AccountContext;
 
 public static class AuthEndpoints
 {
-    public static void MapAuthEndpoints(this IEndpointRouteBuilder endpoints) {
+    public static void MapAuthEndpoints(this IEndpointRouteBuilder endpoints)
+    {
         // TODO: Configue api documentation
-        endpoints.MapPost("/auth/token", async (LoginViewModel loginViewModel, IMapper mapper, IMediator bus) => {
+        endpoints.MapPost("/auth/token", async (LoginViewModel loginViewModel, IMapper mapper, IMediator bus) =>
+        {
 
             var command = mapper.Map<LoginCommand>(loginViewModel);
 
