@@ -4,7 +4,7 @@ namespace RoomsEnglish.Application.PlayerContext.ViewModels;
 
 public class PlayerViewModel
 {
-    [Required]
+    [Required(ErrorMessage = "{0} is required")]
     public string Name { get; set; }
 
     public PlayerViewModel(string name)
