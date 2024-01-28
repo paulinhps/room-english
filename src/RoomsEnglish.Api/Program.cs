@@ -1,6 +1,20 @@
-using RoomsEnglish.Api.DependencyInjection;
+using System.IO.Compression;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http.Json;
+using Microsoft.AspNetCore.ResponseCompression;
+using RoomsEnglish.Api.AccountContext;
+using RoomsEnglish.Infraestructure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddInfraestructureServices(builder.Configuration); //camada de infra
+builder.Services.AddControllers();//Sai no futuro
+
+// Api Request Compression
+builder.Services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
+builder.Services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
+
+builder.Services.Configure<JsonOptions>(options => options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -15,16 +29,20 @@ app.UseCors(c =>
     c.AllowAnyOrigin();
 });
 
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
 
 app.UseHttpsRedirection();
+app.UseRouting();
 
-app.MapGet("/", () => { return new { state = "Alive" }; }).ExcludeFromDescription();
+app.UseResponseCompression();
 
-app.MapApiEndPoints();
+//TODO: Refactor this controllers from MinimalApi Endpoints
+app.MapControllers();
+
+app.MapAuthEndpoints();
 
 app.Run();
