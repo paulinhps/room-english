@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RoomsEnglish.Application.PlayerContext.ViewModels;
 
-namespace PlayersEnglish.Api.Controllers;
+namespace RoomsEnglish.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
