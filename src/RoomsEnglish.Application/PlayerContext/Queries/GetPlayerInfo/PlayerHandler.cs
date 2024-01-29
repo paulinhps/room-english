@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using RoomsEnglish.Application.PlayerContext.LoginPlayer;
+using RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 using RoomsEnglish.Domain.AccountContext.Repositories;
 using RoomsEnglish.Domain.AccountContext.Services;
 using RoomsEnglish.Domain.UserContext.Entities;

@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace RoomsEnglish.Application.PlayerContext.LoginPlayer;
+namespace RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 
 public class LoginCommand : IRequest<LoginResult>
 {

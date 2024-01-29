@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace RoomsEnglish.Application.PlayerContext.LoginPlayer;
+namespace RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 
 public class LoginCommandValidator : AbstractValidator<LoginCommand>
 {

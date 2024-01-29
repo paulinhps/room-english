@@ -1,6 +1,8 @@
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using RoomsEnglish.Domain.SharedContext.Models;
+using RoomsEnglish.Domain.SharedContext.UseCases;
 
 namespace RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 
@@ -36,31 +38,4 @@ where TCommand : notnull
 
         return next();
     }
-}
-
-public abstract class CommandResult
-{
-    public IEnumerable<Error> Errors { get; set; }
-    protected CommandResult(params Error[] errors)
-    {
-        Errors = errors;
-    }
-    public string? Message { get; set; }
-
-}
-
-public class Error
-{
-    public string? Key { get; set; }
-    public string? Message { get; set; }
-}
-
-public class ErrorCommandResult : CommandResult
-{
-
-    public ErrorCommandResult(string message, params Error[] errors) : base(errors)
-    {
-        Message = message;
-    }
-
 }
