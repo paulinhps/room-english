@@ -1,6 +1,6 @@
 using AutoMapper;
 using MediatR;
-using RoomsEnglish.Application.PlayerContext.LoginPlayer;
+using RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 using RoomsEnglish.Application.PlayerContext.ViewModels;
 
 namespace RoomsEnglish.Api.PlayerContext;

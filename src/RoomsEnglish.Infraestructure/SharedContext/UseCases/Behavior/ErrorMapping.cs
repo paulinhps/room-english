@@ -1,5 +1,6 @@
 using AutoMapper;
 using FluentValidation.Results;
+using RoomsEnglish.Domain.SharedContext.Models;
 
 namespace RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 

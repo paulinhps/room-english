@@ -4,7 +4,7 @@ using RoomsEnglish.Domain.AccountContext.Repositories;
 using RoomsEnglish.Domain.AccountContext.Services;
 using RoomsEnglish.Domain.UserContext.Entities;
 
-namespace RoomsEnglish.Application.PlayerContext.LoginPlayer;
+namespace RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 
 public class LoginHandler : IRequestHandler<LoginCommand, LoginResult>
 {

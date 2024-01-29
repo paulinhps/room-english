@@ -10,7 +10,7 @@ public class ApplicationUser : Player, IApplicationUser
     //public string HashSalt { get; private set; }
 
 
-    public ApplicationUser(Email email, string password, string name, int level, int experience) : base(name, level, experience)
+    public ApplicationUser(Email email, string password, string name, int level = 1, int experience = 0) : base(name, level, experience)
     {
         Email = email;
         Password = password;

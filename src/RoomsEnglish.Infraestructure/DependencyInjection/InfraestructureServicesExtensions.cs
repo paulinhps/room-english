@@ -51,6 +51,7 @@ public static class InfraestructureServicesExtensions
     {
 
         services.AddSingleton<ISecurityService, SecurityService>();
+        services.AddScoped<INotificationContext, NotificationContext>();
 
         return services;
     }

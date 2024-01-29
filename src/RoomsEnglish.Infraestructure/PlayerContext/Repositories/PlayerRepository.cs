@@ -1,3 +1,4 @@
+using RoomsEnglish.Application.Data;
 using RoomsEnglish.Domain.AccountContext.Repositories;
 using RoomsEnglish.Domain.UserContext.Entities;
 
@@ -5,6 +6,24 @@ namespace RoomsEnglish.Infraestructure.AccountContext.Repositories;
 
 public class PlayerRepository : IPlayerRepository
 {
+    private readonly IApplicationDbContext _context;
+
+    public PlayerRepository(IApplicationDbContext context)
+    {
+        _context = context;
+    }
+    public async Task<ApplicationUser> CreatePlayer(ApplicationUser user)
+    {
+       var result = await _context.Users.AddAsync(user);
+
+       return result.Entity;
+    }
+
+    public Task<bool> ExistsPlayerWithEmail(string email)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<Player> FindPlayerById(Guid playerId, CancellationToken cancellationToken)
     {
         // TODO: Implements this method
