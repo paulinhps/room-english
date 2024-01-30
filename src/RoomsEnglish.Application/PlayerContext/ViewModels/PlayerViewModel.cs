@@ -2,13 +2,11 @@
 
 namespace RoomsEnglish.Application.PlayerContext.ViewModels;
 
-public class PlayerViewModel
+public class PlayerViewModel(string name, Guid? id)
 {
     [Required(ErrorMessage = "{0} is required")]
-    public string Name { get; set; }
+    public Guid? Id { get; set; } = id;
 
-    public PlayerViewModel(string name)
-    {
-        Name = name;
-    }
+    [Required(ErrorMessage = "{0} is required")]
+    public string Name { get; set; } = name;
 }

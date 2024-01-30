@@ -1,10 +1,10 @@
 namespace RoomsEnglish.Application.PlayerContext.PlayerGetId;
 
-public class PlayerResult
+public class QueryResult<T>
 {
-    public Guid Id { get; set; }
-
-    public bool Success => !Errors.Any();
+    public IEnumerable<T>? Data { get; set; }
+    public bool Success => !Errors.Any() || MessageCode != 200;
     public string? Message { get; set; }
+    public int MessageCode { get; set; } = 200;
     public IEnumerable<string> Errors { get; set; } = new List<string>();
 }

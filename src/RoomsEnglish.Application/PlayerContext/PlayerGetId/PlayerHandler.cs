@@ -1,13 +1,14 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using RoomsEnglish.Application.PlayerContext.LoginPlayer;
+using RoomsEnglish.Application.PlayerContext.ViewModels;
 using RoomsEnglish.Domain.AccountContext.Repositories;
 using RoomsEnglish.Domain.AccountContext.Services;
 using RoomsEnglish.Domain.UserContext.Entities;
 
 namespace RoomsEnglish.Application.PlayerContext.PlayerGetId;
 
-public class PlayerHandler : IRequestHandler<PlayerCommand, PlayerResult>
+public class PlayerHandler : IRequestHandler<GetPlayerByIdQuery, QueryResult<PlayerViewModel>>
 {
     private readonly IPlayerRepository _playerRepository;
     private readonly ISecurityService _securityService;
@@ -20,28 +21,38 @@ public class PlayerHandler : IRequestHandler<PlayerCommand, PlayerResult>
         _logger = logger;
     }
 
-    public async Task<PlayerResult> Handle(PlayerCommand request, CancellationToken cancellationToken)
+    public async Task<QueryResult<PlayerViewModel>> Handle(GetPlayerByIdQuery request, CancellationToken cancellationToken)
     {
         // TODO: Implements a AuthHandler
         // 1 - Check If Command is Valid (We will use a Behiavor process)
         // 2 - Validate User Credentials
-        IApplicationUser user = default!;
-
         try
         {
-            user = (IApplicationUser)await _playerRepository.FindPlayerById(request.Id, cancellationToken);
+            var player = await _playerRepository.FindPlayerById(request.Id, cancellationToken);
+            //TODO: Mapper para PlayerViewModel
+            var result = new QueryResult<PlayerViewModel>();
+            return result;
+            //result.Data = PlayerViewModel
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "player not found.");
             // TODO: Implements error results
+            var errors = new QueryResult<PlayerViewModel>(
+                // criar no constructor da base
+            );
         }
 
         // TODO: Change this to Autommaper
-        return new PlayerResult()
+        return new QueryResult<PlayerViewModel>()
         {
-            Id = user.Id,
-            Message = "success!"
+            MessageCode = 400,
+            Message = "error!",
         };
+    }
+    
+    public async Task<QueryResult<PlayerViewModel>> Handle(GetPlayersQuery request, CancellationToken cancellationToken)
+    {
+        return null;
     }
 }
