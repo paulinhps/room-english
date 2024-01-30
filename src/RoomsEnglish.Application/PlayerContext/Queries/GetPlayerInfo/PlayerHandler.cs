@@ -25,11 +25,12 @@ public class PlayerHandler : IRequestHandler<PlayerCommand, PlayerResult>
         // TODO: Implements a AuthHandler
         // 1 - Check If Command is Valid (We will use a Behiavor process)
         // 2 - Validate User Credentials
-        IApplicationUser user = default!;
+        IApplicationUser? user = default!;
 
         try
         {
-            user = (IApplicationUser)await _playerRepository.FindPlayerById(request.Id, cancellationToken);
+            user = await _playerRepository.FindPlayerByIdAsync(request.Id, cancellationToken);
+
         }
         catch (Exception ex)
         {
