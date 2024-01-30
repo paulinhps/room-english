@@ -1,22 +1,20 @@
-using AutoMapper;
 using FluentValidation;
 using MediatR;
-using RoomsEnglish.Domain.SharedContext.Models;
-using RoomsEnglish.Domain.SharedContext.UseCases;
+using RoomsEnglish.Application.SharedContext.Extensions;
+using RoomsEnglish.Application.SharedContext.UseCases;
+using RoomsEnglish.Domain.SharedContext.Constants;
 
 namespace RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 
 public class ValidatonCommandBehavior<TCommand, TResult> : IPipelineBehavior<TCommand, TResult>
-where TResult : CommandResult
-where TCommand : notnull
+where TResult : ApplicationResponse
+where TCommand : notnull, IRequest<TResult>
 {
     private readonly IEnumerable<IValidator<TCommand>> _validators;
-    private readonly IMapper _mapper;
 
-    public ValidatonCommandBehavior(IEnumerable<IValidator<TCommand>> validators, IMapper mapper)
+    public ValidatonCommandBehavior(IEnumerable<IValidator<TCommand>> validators)
     {
         _validators = validators;
-        _mapper = mapper;
     }
     public Task<TResult> Handle(TCommand request, RequestHandlerDelegate<TResult> next, CancellationToken cancellationToken)
     {
@@ -29,9 +27,9 @@ where TCommand : notnull
         if (failures.Any())
         {
 
-            IEnumerable<Error> errors = _mapper.Map<IEnumerable<Error>>(failures);
-
-            var errorCommandResult = new ErrorCommandResult("command is not valid", errors.ToArray()) as TResult;
+            var errorCommandResult = ApplicationResponses.CreateResponse(
+                EResponseType.InputedError, 
+                "request is not valid", failures.GetErrors()) as TResult;
 
             return Task.FromResult(errorCommandResult!);
         }
