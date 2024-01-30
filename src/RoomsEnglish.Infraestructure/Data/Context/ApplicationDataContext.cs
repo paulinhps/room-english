@@ -4,15 +4,15 @@ using RoomsEnglish.Domain.UserContext.Entities;
 
 namespace RoomsEnglish.Infraestructure.Data.Context;
 
-public class DataContext : DbContext, IApplicationDbContext
+public class ApplicationDataContext : DbContext, IApplicationDbContext
 {
-    public DataContext(DbContextOptions<DataContext> opt)
+    public ApplicationDataContext(DbContextOptions<ApplicationDataContext> opt)
     : base(opt) { }
 
-    public DbSet<ApplicationUser> Users => Set<ApplicationUser>();
+    public DbSet<Player> Users => Set<Player>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDataContext).Assembly);
 
         base.OnModelCreating(modelBuilder);
     }
