@@ -4,8 +4,9 @@ namespace RoomsEnglish.Domain.AccountContext.Repositories;
 
 public interface IPlayerRepository
 {
-    Task<ApplicationUser> CreatePlayer(ApplicationUser user);
-    Task<bool> ExistsPlayerWithEmail(string email);
-    Task<Player> FindPlayerById(Guid playerId, CancellationToken cancellationToken);
+    Task<Player> CreatePlayerAsync(Player user);
+    Task<bool> ExistsPlayerWithEmailAsync(string email);
+    Task<Player?> FindPlayerByIdAsync(Guid playerId, CancellationToken cancellationToken);
+    Task<IApplicationUser?> FindPlayerByEmailAsync(string email, CancellationToken cancellationToken);
 
 }

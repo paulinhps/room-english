@@ -1,5 +1,8 @@
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using RoomsEnglish.Application.Data;
 using RoomsEnglish.Domain.AccountContext.Repositories;
+using RoomsEnglish.Domain.SharedContext.ValueObjects;
 using RoomsEnglish.Domain.UserContext.Entities;
 
 namespace RoomsEnglish.Infraestructure.AccountContext.Repositories;
@@ -12,30 +15,33 @@ public class PlayerRepository : IPlayerRepository
     {
         _context = context;
     }
-    public async Task<ApplicationUser> CreatePlayer(ApplicationUser user)
+    public async Task<Player> CreatePlayerAsync(Player user)
     {
-       var result = await _context.Users.AddAsync(user);
+        var result = await _context.Users.AddAsync(user);
 
-       return result.Entity;
+        return result.Entity;
     }
 
-    public Task<bool> ExistsPlayerWithEmail(string email)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<bool> ExistsPlayerWithEmailAsync(string email)
+    => await _context.Users.AsNoTracking()
+        .AnyAsync(PlayerQueries.FindPlayerByEmail(email));
 
-    public Task<Player> FindPlayerById(Guid playerId, CancellationToken cancellationToken)
-    {
-        // TODO: Implements this method
-        throw new NotImplementedException("");
-    }
+    public async Task<Player?> FindPlayerByIdAsync(Guid playerId, CancellationToken cancellationToken)
+    => await _context.Users
+        .FirstOrDefaultAsync(PlayerQueries.FindPlayerById(playerId), cancellationToken);
+
+    public async Task<IApplicationUser?> FindPlayerByEmailAsync(string email, CancellationToken cancellationToken)
+    => await _context.Users
+        .FirstOrDefaultAsync(PlayerQueries.FindPlayerByEmail(email), cancellationToken);
+
 }
 
-public class UserRepository : IUserRepository
+public static class PlayerQueries
 {
-    public Task<IApplicationUser> FindUserByEmailAsync(string userEmail, CancellationToken cancellationToken)
-    {
-        IApplicationUser p = new ApplicationUser(userEmail, "CE2813B3E59D96FE64EB74F4642029486BC308D6BCB27762196401168B9ED320:1376267DDF7328D6981F0D32C1412881:50000:SHA256", "fake user", 1, 0);
-        return Task.FromResult(p);
-    }
+    public static Expression<Func<Player, bool>> FindPlayerByEmail(string userEmail)
+    => player => player.Email.Equals((Email)userEmail);
+
+    public static Expression<Func<Player, bool>> FindPlayerById(Guid playerId)
+    => player => player.Id == playerId;
+
 }
