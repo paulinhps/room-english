@@ -1,41 +1,39 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using RoomsEnglish.Domain.Models;
-using RoomsEnglish.Domain.UserContext.Entities;
 
 namespace RoomsEnglish.Infraestructure.Mapping
 {
-    public class ApplicationUserMap : IEntityTypeConfiguration<ApplicationUser>
+    public class PlayerConfiguration : IEntityTypeConfiguration<Domain.UserContext.Entities.Player>
     {
-        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+        public void Configure(EntityTypeBuilder<Domain.UserContext.Entities.Player> builder)
         {
-            builder.ToTable("USER");
+            builder.ToTable("PLAYERS");
 
             builder.HasKey(user => user.Id);
 
             builder.Property(user => user.Email)
                 .IsRequired()
-                .HasColumnName("SENHA_EMAIL")
+                .HasColumnName("USER_EMAIL")
                 .HasMaxLength(30);
 
             builder.Property(user => user.Password)
                 .IsRequired()
-                .HasColumnName("SENHA_PASSWORD")
+                .HasColumnName("USER_PASSWORD")
                 .HasMaxLength(80);
 
             builder.Property(user => user.Name)
                 .IsRequired()
-                .HasColumnName("EMAIL_USUARIO")
+                .HasColumnName("PLAYER_NAME")
                 .HasMaxLength(30);
 
             builder.Property(user => user.Experience)
                 .IsRequired()
-                .HasColumnName("SENHA_EXPERIENCE")
+                .HasColumnName("PLAYER_EXPERIENCE")
                 .HasMaxLength(5);
 
             builder.Property(user => user.Level)
                 .IsRequired()
-                .HasColumnName("SENHA_LEVEL")
+                .HasColumnName("PLAYER_LEVEL")
                 .HasMaxLength(5);
         }
     }
