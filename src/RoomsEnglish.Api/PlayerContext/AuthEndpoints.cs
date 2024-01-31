@@ -1,5 +1,7 @@
 using AutoMapper;
+
 using MediatR;
+
 using RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 using RoomsEnglish.Application.PlayerContext.ViewModels;
 
@@ -24,4 +26,3 @@ public static class AuthEndpoints
 
     }
 }
-
