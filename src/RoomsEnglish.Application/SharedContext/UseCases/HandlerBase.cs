@@ -14,3 +14,4 @@ where TRequest : notnull, IRequest<TResponse>
 
     public abstract Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken);
 }
+
