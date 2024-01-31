@@ -14,27 +14,36 @@ namespace RoomsEnglish.Infraestructure.Mapping
             builder.Property(user => user.Email)
                 .IsRequired()
                 .HasColumnName("USER_EMAIL")
-                .HasMaxLength(30);
+                .HasColumnType("varchar")
+                .HasMaxLength(50)
+                .HasConversion(p => p.Address, dbValue => dbValue);
 
             builder.Property(user => user.Password)
                 .IsRequired()
                 .HasColumnName("USER_PASSWORD")
-                .HasMaxLength(80);
+                .HasColumnType("varchar")
+                .HasMaxLength(120);
 
             builder.Property(user => user.Name)
                 .IsRequired()
                 .HasColumnName("PLAYER_NAME")
-                .HasMaxLength(30);
+                .HasColumnType("varchar")
+                .HasMaxLength(50);
 
             builder.Property(user => user.Experience)
                 .IsRequired()
                 .HasColumnName("PLAYER_EXPERIENCE")
+                .HasDefaultValue(0)
                 .HasMaxLength(5);
 
             builder.Property(user => user.Level)
                 .IsRequired()
                 .HasColumnName("PLAYER_LEVEL")
+                .HasDefaultValue(1)
                 .HasMaxLength(5);
+
+            builder.HasIndex(user => user.Email, "IX_PLAYERS_EMAIL")
+            .IsUnique();
         }
     }
 }

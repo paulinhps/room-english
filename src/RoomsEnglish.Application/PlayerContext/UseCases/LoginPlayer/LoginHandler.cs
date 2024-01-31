@@ -51,19 +51,29 @@ public class LoginHandler : HandlerBase<LoginCommand, DataApplicationResponse<Lo
             NotificationContext.AddNotification("LoginError", "user name or password is invalid");
 
         }
+
         // 3 - Generate AuthToken
+        if(!NotificationContext.ExistsNotifications) {
+
         string authToken = _securityService.GenerateToken(user!);
 
         var loginResult = new LoginResult(authToken);
 
         _mapper.Map(user, loginResult);
 
+         return ApplicationResponses.CreateResponse(
+            data: loginResult,
+            responseType: EResponseType.Success, 
+            $"authentication success"
+            );
+
+        }
+
         // 4 - Make a AuthUserResult
         
-        return ApplicationResponses.CreateResponse(
-            data: loginResult, 
-            responseType: NotificationContext.ExistsNotifications ? EResponseType.ProccessError : EResponseType.Success, 
-            $"authentication {(NotificationContext.ExistsNotifications ? "success" : "failere")}", 
+        return ApplicationResponses.CreateResponse<LoginResult>(
+            responseType: EResponseType.ProccessError, 
+            $"authentication failure", 
             NotificationContext.GetErrors()
             );
     }

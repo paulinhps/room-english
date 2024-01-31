@@ -17,7 +17,7 @@ public static class PersistenceServicesExtensions {
         services.AddScoped<IApplicationDbContext>(
             provider => provider.GetRequiredService<ApplicationDataContext>());
 
-            AddRepositories(services);
+        services.AddRepositories();
     }
 
     private static IServiceCollection AddRepositories(this IServiceCollection services)
