@@ -1,0 +1,14 @@
+using FluentValidation;
+using RoomsEnglish.Domain.SharedContext.ValueObjects;
+
+namespace RoomsEnglish.Application.PlayerContext.DomainValidations.ValueObjects;
+
+public class EmailValidation : AbstractValidator<Email>
+{
+    public EmailValidation()
+    {
+        RuleFor(email => email.Address)
+        .NotEmpty()
+        .EmailAddress();
+    }
+}
