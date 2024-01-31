@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using RoomsEnglish.Application.PlayerContext.ViewModels;
 
 namespace RoomsEnglish.Api.Controllers;
@@ -37,4 +38,3 @@ public class PlayerController : ControllerBase
         return Ok(id);
     }
 }
-
