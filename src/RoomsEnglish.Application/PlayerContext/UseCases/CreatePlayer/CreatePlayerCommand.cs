@@ -1,7 +1,6 @@
-using MediatR;
 using RoomsEnglish.Application.SharedContext.UseCases;
 
-public class CreatePlayerCommand : IRequest<DataApplicationResponse<PlayerInfo>>
+public class CreatePlayerCommand : RequestCommand<PlayerInfo>
 {
     public string Name { get; set; } = null!;
     public string Email { get; set; } = null!;
