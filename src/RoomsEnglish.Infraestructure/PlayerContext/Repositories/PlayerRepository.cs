@@ -30,16 +30,16 @@ public class PlayerRepository : IPlayerRepository
     => await _context.Users
         .FirstOrDefaultAsync(PlayerQueries.FindPlayerById(playerId), cancellationToken);
 
-    public async Task<IApplicationUser?> FindPlayerByEmailAsync(string email, CancellationToken cancellationToken)
+    public async Task<IApplicationUser?> FindPlayerByEmailAsync(string userEmail, CancellationToken cancellationToken)
     => await _context.Users
-        .FirstOrDefaultAsync(PlayerQueries.FindPlayerByEmail(email), cancellationToken);
+        .FirstOrDefaultAsync(PlayerQueries.FindPlayerByEmail(userEmail), cancellationToken);
 
 }
 
 public static class PlayerQueries
 {
-    public static Expression<Func<Player, bool>> FindPlayerByEmail(string userEmail)
-    => player => player.Email.Equals((Email)userEmail);
+    public static Expression<Func<Player, bool>> FindPlayerByEmail(Email userEmail)
+    => player => player.Email.Equals(userEmail);
 
     public static Expression<Func<Player, bool>> FindPlayerById(Guid playerId)
     => player => player.Id == playerId;
