@@ -8,7 +8,7 @@ namespace RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 
 public class ValidationApplicationRequestBehavior<TCommand, TResult> : IPipelineBehavior<TCommand, TResult>
 where TResult : ApplicationResponse
-where TCommand : notnull, IRequest<TResult>
+where TCommand : notnull, AbstractRequest<TResult>
 {
     private readonly IEnumerable<IValidator<TCommand>> _validators;
 

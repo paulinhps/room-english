@@ -15,6 +15,7 @@ public static class InfraestructureServicesExtensions
             cfg.RegisterServicesFromAssemblies(AssemblyInfo.Assembly);
 
             cfg.AddOpenBehavior(typeof(ValidationApplicationRequestBehavior<,>));
+            cfg.AddOpenBehavior(typeof(UnitOfWorkBehavior<,>));
 
         });
 

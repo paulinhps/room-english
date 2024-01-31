@@ -8,7 +8,7 @@ namespace RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 
 public class UnitOfWorkBehavior<TCommand, TResult> : IPipelineBehavior<TCommand, TResult>
 where TResult : ApplicationResponse
-where TCommand : notnull
+where TCommand : notnull, AbstractRequestCommand<TResult>
 {
     private readonly IApplicationDbContext _dbContext;
     private readonly INotificationContext _notificationContext;
