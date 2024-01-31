@@ -6,13 +6,13 @@ using RoomsEnglish.Domain.SharedContext.Constants;
 
 namespace RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 
-public class ValidatonCommandBehavior<TCommand, TResult> : IPipelineBehavior<TCommand, TResult>
+public class ValidationApplicationRequestBehavior<TCommand, TResult> : IPipelineBehavior<TCommand, TResult>
 where TResult : ApplicationResponse
 where TCommand : notnull, IRequest<TResult>
 {
     private readonly IEnumerable<IValidator<TCommand>> _validators;
 
-    public ValidatonCommandBehavior(IEnumerable<IValidator<TCommand>> validators)
+    public ValidationApplicationRequestBehavior(IEnumerable<IValidator<TCommand>> validators)
     {
         _validators = validators;
     }
