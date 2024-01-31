@@ -1,3 +1,5 @@
+namespace RoomsEnglish.Application.PlayerContext.UseCases.CreatePlayer;
+
 public class PlayerInfo
 {
     public Guid PlayerId { get; set; }
