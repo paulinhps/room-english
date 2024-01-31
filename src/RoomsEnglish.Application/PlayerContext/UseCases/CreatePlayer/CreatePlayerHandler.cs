@@ -7,6 +7,8 @@ using RoomsEnglish.Domain.AccountContext.Repositories;
 using RoomsEnglish.Domain.SharedContext.Constants;
 using RoomsEnglish.Domain.UserContext.Entities;
 
+namespace RoomsEnglish.Application.PlayerContext.UseCases.CreatePlayer;
+
 public class CreatePlayerHandler : HandlerBase<CreatePlayerCommand, DataApplicationResponse<PlayerInfo>>
 {
     private readonly IPlayerRepository _playerRepository;
@@ -43,16 +45,16 @@ public class CreatePlayerHandler : HandlerBase<CreatePlayerCommand, DataApplicat
         catch (Exception ex)
         {
             _logger.LogError(ex, "An error occurred when trying to query a player");
-            NotificationContext.AddNotification("DbException","Erro ao consultar Player existente na base");
+            NotificationContext.AddNotification("DbException", "Erro ao consultar Player existente na base");
         }
 
         if (NotificationContext.ExistsNotifications)
         {
-          return ApplicationResponses.CreateResponse<PlayerInfo>(
-            EResponseType.ProccessError, 
-            "Failed to create a player", 
-            NotificationContext.GetErrors());
-        
+            return ApplicationResponses.CreateResponse<PlayerInfo>(
+              EResponseType.ProccessError,
+              "Failed to create a player",
+              NotificationContext.GetErrors());
+
         }
         // 3 - Instanciar um objeto do tipo ApplicationUser (Player)
         Player user = new(command.Email, command.Password, command.Name);
@@ -68,15 +70,15 @@ public class CreatePlayerHandler : HandlerBase<CreatePlayerCommand, DataApplicat
             try
             {
                 _ = await _playerRepository.CreatePlayerAsync(user);
-                
+
                 return ApplicationResponses.CreateResponse(
-                    data: _mapper.Map<PlayerInfo>(user), 
-                    responseType: EResponseType.Created, 
+                    data: _mapper.Map<PlayerInfo>(user),
+                    responseType: EResponseType.Created,
                     "Success to create a player");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex , "An error occurred when trying to create a player");
+                _logger.LogError(ex, "An error occurred when trying to create a player");
                 NotificationContext.AddNotification("DbException",
                 "An error occurred when trying to create a player");
             }

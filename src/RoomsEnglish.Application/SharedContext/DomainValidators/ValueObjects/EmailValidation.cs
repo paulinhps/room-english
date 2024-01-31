@@ -1,7 +1,7 @@
 using FluentValidation;
 using RoomsEnglish.Domain.SharedContext.ValueObjects;
 
-namespace RoomsEnglish.Application.PlayerContext.DomainValidations.ValueObjects;
+namespace RoomsEnglish.Application.SharedContext.DomainValidators.ValueObjects;
 
 public class EmailValidation : AbstractValidator<Email>
 {
