@@ -1,5 +1,6 @@
-using RoomsEnglish.Domain.AccountContext.Services;
-using RoomsEnglish.Domain.SharedContext.ValueObjects;
+using RoomsEnglish.Domain.PlayerContext.Services;
+
+namespace RoomsEnglish.Domain.SharedContext.ValueObjects;
 
 public class Password : ValueObject
 {
@@ -16,6 +17,6 @@ public class Password : ValueObject
     }
 
     public static Password Create(string plainPassword, ISecurityService securityService)
-    => new(securityService.GenerateHash(plainPassword));
+        => new(securityService.GenerateHash(plainPassword));
 
 }

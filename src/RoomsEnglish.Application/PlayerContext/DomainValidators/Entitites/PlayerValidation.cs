@@ -1,6 +1,7 @@
 using FluentValidation;
+
+using RoomsEnglish.Domain.PlayerContext.Entities;
 using RoomsEnglish.Domain.SharedContext.ValueObjects;
-using RoomsEnglish.Domain.UserContext.Entities;
 
 namespace RoomsEnglish.Application.PlayerContext.DomainValidators.Entitites;
 

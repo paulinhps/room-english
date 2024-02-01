@@ -1,6 +1,8 @@
-using RoomsEnglish.Domain.UserContext.Entities;
 
-namespace RoomsEnglish.Domain.AccountContext.Repositories;
+
+using RoomsEnglish.Domain.PlayerContext.Entities;
+
+namespace RoomsEnglish.Domain.PlayerContext.Repositories;
 
 public interface IPlayerRepository
 {
@@ -8,5 +10,5 @@ public interface IPlayerRepository
     Task<bool> ExistsPlayerWithEmailAsync(string email);
     Task<Player?> FindPlayerByIdAsync(Guid playerId, CancellationToken cancellationToken);
     Task<IApplicationUser?> FindPlayerByEmailAsync(string userEmail, CancellationToken cancellationToken);
-
+    Task<Player> GetPlayersAsync(CancellationToken cancellationToken);
 }

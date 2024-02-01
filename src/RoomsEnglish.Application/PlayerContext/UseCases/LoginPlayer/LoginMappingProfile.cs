@@ -1,6 +1,6 @@
 using AutoMapper;
 using RoomsEnglish.Application.PlayerContext.ViewModels;
-using RoomsEnglish.Domain.UserContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Entities;
 
 namespace RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 

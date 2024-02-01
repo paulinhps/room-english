@@ -1,6 +1,6 @@
 using System.Security.Claims;
+using RoomsEnglish.Domain.PlayerContext.Entities;
 using RoomsEnglish.Domain.SharedContext.Constants;
-using RoomsEnglish.Domain.UserContext.Entities;
 
 namespace RoomsEnglish.Infraestructure.PlayerContext.Extensions;
 

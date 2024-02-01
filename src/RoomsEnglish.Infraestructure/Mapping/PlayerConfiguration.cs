@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using RoomsEnglish.Domain.PlayerContext.Entities;
 
 namespace RoomsEnglish.Infraestructure.Mapping
 {
-    public class PlayerConfiguration : IEntityTypeConfiguration<Domain.UserContext.Entities.Player>
+    public class PlayerConfiguration : IEntityTypeConfiguration<Player>
     {
-        public void Configure(EntityTypeBuilder<Domain.UserContext.Entities.Player> builder)
+        public void Configure(EntityTypeBuilder<Player> builder)
         {
             builder.ToTable("PLAYERS");
 

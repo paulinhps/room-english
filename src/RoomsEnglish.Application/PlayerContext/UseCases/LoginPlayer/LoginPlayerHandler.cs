@@ -1,10 +1,10 @@
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using RoomsEnglish.Application.SharedContext.UseCases;
-using RoomsEnglish.Domain.AccountContext.Repositories;
-using RoomsEnglish.Domain.AccountContext.Services;
+using RoomsEnglish.Domain.PlayerContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Repositories;
+using RoomsEnglish.Domain.PlayerContext.Services;
 using RoomsEnglish.Domain.SharedContext.Constants;
-using RoomsEnglish.Domain.UserContext.Entities;
 
 namespace RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 
