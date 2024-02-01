@@ -1,9 +1,5 @@
-
-
 using RoomsEnglish.Domain.PlayerContext.Entities;
-
 namespace RoomsEnglish.Domain.PlayerContext.Repositories;
-
 public interface IPlayerRepository
 {
     Task<Player> CreatePlayerAsync(Player user);

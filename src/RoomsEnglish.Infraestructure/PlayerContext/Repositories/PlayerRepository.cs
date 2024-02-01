@@ -38,6 +38,7 @@ public class PlayerRepository : IPlayerRepository
     {
         throw new NotImplementedException();
     }
+    
 }
 
 public static class PlayerQueries
