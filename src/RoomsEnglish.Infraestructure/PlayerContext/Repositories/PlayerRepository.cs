@@ -34,11 +34,10 @@ public class PlayerRepository : IPlayerRepository
     => await _context.Users
         .FirstOrDefaultAsync(PlayerQueries.FindPlayerByEmail(userEmail), cancellationToken);
 
-    public Task<Player> GetPlayersAsync(CancellationToken cancellationToken)
+    public Task<IEnumerable<Player>> GetPlayersAsync(CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
-    
 }
 
 public static class PlayerQueries
