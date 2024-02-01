@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RoomsEnglish.Application.Data;
-using RoomsEnglish.Domain.UserContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Entities;
 
 namespace RoomsEnglish.Infraestructure.Data.Context;
 

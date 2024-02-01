@@ -1,7 +1,7 @@
 using RoomsEnglish.Domain.SharedContext.Entities;
 using RoomsEnglish.Domain.SharedContext.ValueObjects;
 
-namespace RoomsEnglish.Domain.UserContext.Entities;
+namespace RoomsEnglish.Domain.PlayerContext.Entities;
 
 public class Player : Entity, IApplicationUser
 {

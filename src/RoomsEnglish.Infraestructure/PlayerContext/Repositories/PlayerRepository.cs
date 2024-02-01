@@ -1,11 +1,11 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using RoomsEnglish.Application.Data;
-using RoomsEnglish.Domain.AccountContext.Repositories;
 using RoomsEnglish.Domain.SharedContext.ValueObjects;
-using RoomsEnglish.Domain.UserContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Repositories;
 
-namespace RoomsEnglish.Infraestructure.AccountContext.Repositories;
+namespace RoomsEnglish.Infraestructure.PlayerContext.Repositories;
 
 public class PlayerRepository : IPlayerRepository
 {
@@ -34,6 +34,10 @@ public class PlayerRepository : IPlayerRepository
     => await _context.Users
         .FirstOrDefaultAsync(PlayerQueries.FindPlayerByEmail(userEmail), cancellationToken);
 
+    public Task<Player> GetPlayersAsync(CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public static class PlayerQueries

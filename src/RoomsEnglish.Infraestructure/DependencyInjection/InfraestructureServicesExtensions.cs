@@ -1,5 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using RoomsEnglish.Application;
 using RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 
 namespace RoomsEnglish.Infraestructure.DependencyInjection;

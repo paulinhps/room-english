@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RoomsEnglish.Application.PlayerContext.ViewModels;
+﻿namespace RoomsEnglish.Application.PlayerContext.ViewModels;
 
 public class PlayerViewModel
 {

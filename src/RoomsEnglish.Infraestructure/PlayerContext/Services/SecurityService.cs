@@ -2,8 +2,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using RoomsEnglish.Domain.AccountContext.Services;
-using RoomsEnglish.Domain.UserContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Services;
+using RoomsEnglish.Domain.SharedContext.ValueObjects;
 using RoomsEnglish.Infraestructure.PlayerContext.Extensions;
 using RoomsEnglish.Infraestructure.Security;
 

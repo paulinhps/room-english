@@ -2,7 +2,9 @@ using System.Reflection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using RoomsEnglish.Domain.AccountContext.Services;
+
+using RoomsEnglish.Application;
+using RoomsEnglish.Domain.PlayerContext.Services;
 using RoomsEnglish.Infraestructure.PlayerContext.Services;
 
 namespace RoomsEnglish.Infraestructure.DependencyInjection;

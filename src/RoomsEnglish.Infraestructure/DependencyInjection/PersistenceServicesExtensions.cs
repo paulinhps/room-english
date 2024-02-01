@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RoomsEnglish.Application.Data;
-using RoomsEnglish.Domain.AccountContext.Repositories;
-using RoomsEnglish.Infraestructure.AccountContext.Repositories;
+using RoomsEnglish.Domain.PlayerContext.Repositories;
 using RoomsEnglish.Infraestructure.Data.Context;
+using RoomsEnglish.Infraestructure.PlayerContext.Repositories;
 
 namespace RoomsEnglish.Infraestructure.DependencyInjection;
 
