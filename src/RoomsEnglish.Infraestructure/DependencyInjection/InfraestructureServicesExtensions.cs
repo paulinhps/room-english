@@ -4,10 +4,11 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RoomsEnglish.Domain.AccountContext.Repositories;
-using RoomsEnglish.Domain.AccountContext.Services;
-using RoomsEnglish.Infraestructure.AccountContext.Repositories;
+using RoomsEnglish.Application;
+using RoomsEnglish.Domain.PlayerContext.Repositories;
+using RoomsEnglish.Domain.PlayerContext.Services;
 using RoomsEnglish.Infraestructure.Data.Context;
+using RoomsEnglish.Infraestructure.PlayerContext.Repositories;
 using RoomsEnglish.Infraestructure.PlayerContext.Services;
 using RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 

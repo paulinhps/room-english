@@ -1,4 +1,4 @@
-namespace RoomsEnglish.Application.PlayerContext.PlayerGetId;
+namespace RoomsEnglish.Application.PlayerContext.GetPlayers;
 
 public class QueryResult<T>
 {

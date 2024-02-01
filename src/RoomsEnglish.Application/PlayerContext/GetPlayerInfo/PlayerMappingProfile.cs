@@ -1,7 +1,6 @@
 using AutoMapper;
-using RoomsEnglish.Application.PlayerContext.ViewModels;
 
-namespace RoomsEnglish.Application.PlayerContext.PlayerGetId;
+namespace RoomsEnglish.Application.PlayerContext.GetPlayerInfo;
 
 public class PlayerMappingProfile : Profile
 {

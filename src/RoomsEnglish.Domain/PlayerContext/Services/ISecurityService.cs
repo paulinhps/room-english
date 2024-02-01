@@ -1,6 +1,7 @@
-using RoomsEnglish.Domain.UserContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Entities;
+using RoomsEnglish.Domain.SharedContext.ValueObjects;
 
-namespace RoomsEnglish.Domain.AccountContext.Services;
+namespace RoomsEnglish.Domain.PlayerContext.Services;
 
 public interface ISecurityService
 {

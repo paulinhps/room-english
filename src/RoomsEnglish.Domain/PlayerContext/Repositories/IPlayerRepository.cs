@@ -1,9 +1,9 @@
-using RoomsEnglish.Domain.UserContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Entities;
 
-namespace RoomsEnglish.Domain.AccountContext.Repositories;
+namespace RoomsEnglish.Domain.PlayerContext.Repositories;
 
 public interface IPlayerRepository
 {
-    Task<Player> FindPlayerById(Guid playerId, CancellationToken cancellationToken);
-
+    Task<Player> FindPlayerByIdAsync(Guid playerId, CancellationToken cancellationToken);
+    Task<Player> GetPlayersAsync(CancellationToken cancellationToken);
 }

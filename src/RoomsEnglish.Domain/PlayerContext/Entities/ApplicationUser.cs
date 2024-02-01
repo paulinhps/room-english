@@ -1,6 +1,6 @@
 using RoomsEnglish.Domain.SharedContext.ValueObjects;
 
-namespace RoomsEnglish.Domain.UserContext.Entities;
+namespace RoomsEnglish.Domain.PlayerContext.Entities;
 
 public class ApplicationUser : Player, IApplicationUser
 {

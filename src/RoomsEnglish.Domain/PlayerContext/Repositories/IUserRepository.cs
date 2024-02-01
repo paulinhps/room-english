@@ -1,6 +1,6 @@
-using RoomsEnglish.Domain.UserContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Entities;
 
-namespace RoomsEnglish.Domain.AccountContext.Repositories;
+namespace RoomsEnglish.Domain.PlayerContext.Repositories;
 
 public interface IUserRepository
 {

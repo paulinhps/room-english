@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RoomsEnglish.Application.PlayerContext.PlayerGetId;
+using RoomsEnglish.Application.PlayerContext.GetPlayerInfo;
 using RoomsEnglish.Application.PlayerContext.ViewModels;
 
 namespace RoomsEnglish.Api.PlayerContext;

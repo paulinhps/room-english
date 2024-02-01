@@ -1,14 +1,20 @@
-using RoomsEnglish.Domain.AccountContext.Repositories;
-using RoomsEnglish.Domain.UserContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Entities;
+using RoomsEnglish.Domain.PlayerContext.Repositories;
 
-namespace RoomsEnglish.Infraestructure.AccountContext.Repositories;
+namespace RoomsEnglish.Infraestructure.PlayerContext.Repositories;
 
 public class PlayerRepository : IPlayerRepository
 {
-    public Task<Player> FindPlayerById(Guid playerId, CancellationToken cancellationToken)
+    public Task<Player> FindPlayerByIdAsync(Guid playerId, CancellationToken cancellationToken)
     {
         // TODO: Implements this method
         throw new NotImplementedException("");
+    }
+
+    public Task<Player> GetPlayersAsync(CancellationToken cancellationToken)
+    {
+        // TODO: Implements this method
+        throw new NotImplementedException();
     }
 }
 
