@@ -11,5 +11,7 @@ public class ErrorMapping : Profile
         CreateMap<ValidationFailure, Error>()
         .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.PropertyName))
         .ForMember(dest => dest.Message, opt => opt.MapFrom(src => src.ErrorMessage));
+
+        CreateMap<Notification, Error>();
     }
 }

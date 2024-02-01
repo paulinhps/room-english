@@ -15,12 +15,12 @@ public class PlayerController : ControllerBase
         return id == null ? Ok() : Ok(id);
     }
 
-    [HttpPost]
-    [Route("Create")]
-    public ActionResult CreatePlayer([FromBody] PlayerViewModel Player)
-    {
-        return Ok(Player);
-    }
+    // [HttpPost]
+    // [Route("Create")]
+    // public ActionResult CreatePlayer([FromBody] PlayerViewModel Player)
+    // {
+    //     return Ok(Player);
+    // }
 
     [HttpPut]
     [Route("Update")]

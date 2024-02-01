@@ -8,17 +8,17 @@ using RoomsEnglish.Domain.UserContext.Entities;
 
 namespace RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 
-public class LoginHandler : HandlerBase<LoginCommand, DataApplicationResponse<LoginResult>>
+public class LoginPlayerHandler : HandlerBase<LoginPlayerCommand, DataApplicationResponse<LoginPlayerResult>>
 {
     private readonly IPlayerRepository _userRepository;
     private readonly ISecurityService _securityService;
-    private readonly ILogger<LoginHandler> _logger;
+    private readonly ILogger<LoginPlayerHandler> _logger;
     private readonly IMapper _mapper;
 
-    public LoginHandler(IPlayerRepository userRepository,
+    public LoginPlayerHandler(IPlayerRepository userRepository,
                         ISecurityService securityService,
                         IMapper mapper,
-                        ILogger<LoginHandler> logger,
+                        ILogger<LoginPlayerHandler> logger,
                         INotificationContext notificationContext) : base(notificationContext)
     {
         _userRepository = userRepository;
@@ -26,7 +26,7 @@ public class LoginHandler : HandlerBase<LoginCommand, DataApplicationResponse<Lo
         _logger = logger;
         _mapper = mapper;
     }
-    public override async Task<DataApplicationResponse<LoginResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public override async Task<DataApplicationResponse<LoginPlayerResult>> Handle(LoginPlayerCommand request, CancellationToken cancellationToken)
     {
         // TODO: Implements a AuthHandler
         // 1 - Check If Command is Valid (We will use a Behiavor process)
@@ -57,7 +57,7 @@ public class LoginHandler : HandlerBase<LoginCommand, DataApplicationResponse<Lo
 
         string authToken = _securityService.GenerateToken(user!);
 
-        var loginResult = new LoginResult(authToken);
+        var loginResult = new LoginPlayerResult(authToken);
 
         _mapper.Map(user, loginResult);
 
@@ -71,7 +71,7 @@ public class LoginHandler : HandlerBase<LoginCommand, DataApplicationResponse<Lo
 
         // 4 - Make a AuthUserResult
         
-        return ApplicationResponses.CreateResponse<LoginResult>(
+        return ApplicationResponses.CreateResponse<LoginPlayerResult>(
             responseType: EResponseType.ProccessError, 
             $"authentication failure", 
             NotificationContext.GetErrors()

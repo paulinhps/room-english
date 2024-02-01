@@ -1,3 +1,4 @@
+using RoomsEnglish.Domain.SharedContext.Constants;
 using RoomsEnglish.Domain.SharedContext.Models;
 
 public interface INotificationContext
@@ -8,5 +9,7 @@ public interface INotificationContext
     void AddNotifications(params Notification[] notifications);
     Error[] GetErrors();
     IEnumerable<Notification> GetNotifications();
+
+    EResponseType ErrorResponseType { get; set; } 
 }
 

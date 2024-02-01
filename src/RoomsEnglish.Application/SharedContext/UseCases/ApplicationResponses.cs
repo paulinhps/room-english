@@ -14,7 +14,6 @@ public static class ApplicationResponses {
     public static DataApplicationResponse<TData> CreateResponse<TData>(TData? data, EResponseType responseType, string message, params Error[] errors) 
     => new DefaultDataApplicatonResponse<TData>(data, responseType, message, errors);
 
-
     private class DefaultApplicatonResponse : ApplicationResponse
     {
         public DefaultApplicatonResponse(EResponseType responseType, string message, params Error[] errors) : base(responseType, message, errors)
