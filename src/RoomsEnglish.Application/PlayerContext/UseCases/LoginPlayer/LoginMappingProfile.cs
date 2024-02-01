@@ -8,9 +8,9 @@ public class LoginPlayerMapping : Profile
 {
     public LoginPlayerMapping()
     {
-        CreateMap<LoginViewModel, LoginCommand>();
+        CreateMap<LoginViewModel, LoginPlayerCommand>();
 
-        CreateMap<IApplicationUser, LoginResult>()
+        CreateMap<IApplicationUser, LoginPlayerResult>()
         .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
         .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
         .ForMember(dest => dest.AuthToken, opt => opt.Ignore());

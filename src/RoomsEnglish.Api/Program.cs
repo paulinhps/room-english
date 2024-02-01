@@ -10,7 +10,6 @@ using RoomsEnglish.Infraestructure.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfraestructureServices(builder.Configuration); //camada de infra
-builder.Services.AddControllers();//Sai no futuro
 
 // Api Request Compression
 builder.Services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
@@ -42,9 +41,7 @@ app.UseRouting();
 
 app.UseResponseCompression();
 
-//TODO: Refactor this controllers from MinimalApi Endpoints
-app.MapControllers();
-
 app.MapAuthEndpoints();
+app.MapPlayerEndpoints();
 
 app.Run();

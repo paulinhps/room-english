@@ -1,3 +1,5 @@
+using AutoMapper;
+
 using FluentValidation;
 using MediatR;
 using RoomsEnglish.Application.SharedContext.Extensions;
@@ -7,18 +9,21 @@ using RoomsEnglish.Domain.SharedContext.Constants;
 namespace RoomsEnglish.Infraestructure.SharedContext.UseCases.Behavior;
 
 public class ValidationApplicationRequestBehavior<TCommand, TResult> : IPipelineBehavior<TCommand, TResult>
-where TResult : ApplicationResponse
+where TResult : ApplicationResponse, new()
 where TCommand : notnull, AbstractRequest<TResult>
 {
     private readonly IEnumerable<IValidator<TCommand>> _validators;
+    private readonly INotificationContext _notification;
 
-    public ValidationApplicationRequestBehavior(IEnumerable<IValidator<TCommand>> validators)
+    public ValidationApplicationRequestBehavior(IEnumerable<IValidator<TCommand>> validators, INotificationContext notification)
     {
         _validators = validators;
+        _notification = notification;
     }
-    public Task<TResult> Handle(TCommand request, RequestHandlerDelegate<TResult> next, CancellationToken cancellationToken)
+    public async Task<TResult> Handle(TCommand request, RequestHandlerDelegate<TResult> next, CancellationToken cancellationToken)
     {
-        var failures = _validators
+
+       var failures = _validators
                .Select(v => v.Validate(request))
                .SelectMany(x => x.Errors)
                .Where(f => f != null)
@@ -27,13 +32,36 @@ where TCommand : notnull, AbstractRequest<TResult>
         if (failures.Any())
         {
 
-            var errorCommandResult = ApplicationResponses.CreateResponse(
-                EResponseType.InputedError, 
-                "request is not valid", failures.GetErrors()) as TResult;
+            var errorCommandResult = new TResult() {
+                ResponseType = EResponseType.InputedError,
+                Message = "request is not valid",
+                Errors = failures.GetErrors()
+            };
 
-            return Task.FromResult(errorCommandResult!);
+            return errorCommandResult;
+
         }
 
-        return next();
+        var result = await next();
+
+        if(_notification.ExistsNotifications) {
+            try
+            {
+                var errorCommandResult = new TResult() {
+                ResponseType = _notification.ErrorResponseType,
+                Message = "request is not valid",
+                Errors = _notification.GetErrors()
+            };
+            return errorCommandResult;
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+
+        return result;
     }
 }
+

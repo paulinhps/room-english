@@ -11,9 +11,9 @@ public class PlayerHandler : IRequestHandler<PlayerCommand, PlayerResult>
 {
     private readonly IPlayerRepository _playerRepository;
     private readonly ISecurityService _securityService;
-    private readonly ILogger<LoginHandler> _logger;
+    private readonly ILogger<LoginPlayerHandler> _logger;
 
-    public PlayerHandler(IPlayerRepository playerRepository, ISecurityService securityService, ILogger<LoginHandler> logger)
+    public PlayerHandler(IPlayerRepository playerRepository, ISecurityService securityService, ILogger<LoginPlayerHandler> logger)
     {
         _playerRepository = playerRepository;
         _securityService = securityService;

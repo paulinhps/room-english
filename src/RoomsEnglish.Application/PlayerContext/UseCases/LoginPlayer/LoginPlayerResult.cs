@@ -1,7 +1,7 @@
 
 namespace RoomsEnglish.Application.PlayerContext.UseCases.LoginPlayer;
 
-public class LoginResult(string authToken)
+public class LoginPlayerResult(string authToken)
 {
     public Guid UserId { get; set; }
     public string? UserName { get; set; }
