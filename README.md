@@ -8,25 +8,23 @@ You need set your sensive variables with use-secrets.
 ### Create Docker SqlServer
 
 Open terminal, edit MSSQL_SA_PASSWORD=<password> for you password.
-For Example:
+
 `docker run -v ~/docker --name sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<password>" -p 1433:1433 -d mcr.microsoft.com/mssql/server`
 
 > [!IMPORTANT] 
 > If you are going to use https make sure to create the keys
 
-For Example:
 `dotnet dev-certs https --clean
 dotnet dev-certs https --trust`
 
 ConnectionString  (Remember to change the password to the <password> you entered when creating docker)
-For Example:
+
 `Server=localhost,1433;Database=balta;User ID=sa;Password=<password>;Trusted_Connection=False; TrustServerCertificate=True;`
 
 ### Database Connection String
 
 You need set this variable in the API project.
 
-For Example:
 `dotnet user-secrets set "ConnectionStrings:DefaultConnection" "your sql server connection string"`
 
 ### Migrations
