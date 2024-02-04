@@ -1,4 +1,6 @@
 using AutoMapper;
+using RoomsEnglish.Application.PlayerContext.ViewModels;
+using RoomsEnglish.Domain.PlayerContext.Entities;
 
 namespace RoomsEnglish.Application.PlayerContext.GetPlayerInfo;
 
@@ -6,8 +8,7 @@ public class PlayerMappingProfile : Profile
 {
     public PlayerMappingProfile()
     {
-        //CreateMap<PlayerViewModel, GetPlayerByIdQuery>();
-        CreateMap<Guid, GetPlayerByIdQuery>()
-            .ForMember(x => x.Id, x => x.MapFrom(x => x));
+        CreateMap<PlayerViewModel, Player>()
+            .ReverseMap();
     }
 }

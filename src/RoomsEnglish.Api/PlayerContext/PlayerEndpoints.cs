@@ -33,6 +33,7 @@ public static class PlayerEndpoints
             var command = new GetPlayersQuery();
             var result = await bus.Send(command);
 
+            // TODO: create a standardized return
             return result.Success ? Results.Ok(result.Data) : Results.BadRequest(result);
         });
         
@@ -42,12 +43,14 @@ public static class PlayerEndpoints
             if (id == Guid.Empty)
                 return Results.BadRequest("id não pode ser nulo");
             
-            var command = mapper.Map<GetPlayerByIdQuery>(id);
+            var command = new GetPlayerByIdQuery()
+            {
+                Id = id
+            };
             var result = await bus.Send(command);
 
             // TODO: create a standardized return
-            await Task.Delay(1000);
-            return Results.Ok(result);
+            return result.Success ? Results.Ok(result.Data) : Results.BadRequest(result);
         });
 
         endpoints.MapPut($"{EndpointPathMapping.Players}", async (PlayerViewModel playerViewModel, IMapper mapper, IMediator bus) =>
