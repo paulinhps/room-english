@@ -40,7 +40,6 @@ public static class PlayerEndpoints
             //TODO: Validar o GUID
             if (id == Guid.Empty)
                 return Results.BadRequest("id não pode ser nulo");
-
             var command = mapper.Map<GetPlayerByIdQuery>(id);
             var result = await bus.Send(command);
             return result.Success ? Results.Ok(result) : Results.BadRequest(result);
