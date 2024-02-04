@@ -24,36 +24,39 @@ public static class PlayerEndpoints
 
        
         // TODO: Configue api documentation
-        endpoints.MapGet("players",
-            async (IMapper mapper, IMediator bus) =>
-            {
-                return Results.Ok();
-            });
+        endpoints.MapGet($"{EndpointPathMapping.Players}", async (IMapper mapper, IMediator bus) => {
+            await Task.Delay(1000);
+            return Results.Ok();
+        });
         
-        endpoints.MapGet("player/{id:guid}", async (Guid id, IMapper mapper, IMediator bus) =>
+        endpoints.MapGet($"{EndpointPathMapping.Players}/{{id:guid}}", async (Guid id, IMapper mapper, IMediator bus) =>
         {
             //TODO: Validar o GUID
+            if (id == Guid.Empty)
+                return Results.BadRequest("id não pode ser nulo");
             
             var command = mapper.Map<GetPlayerByIdQuery>(id);
             var result = await bus.Send(command);
 
             // TODO: create a standardized return
+            await Task.Delay(1000);
             return Results.Ok(result);
         });
 
-        endpoints.MapPost("Create", async (PlayerViewModel playerViewModel, IMapper mapper, IMediator bus) =>
-        { 
-            await Task.Delay(1000);
-            return Results.Ok();
-        });
-        
-        endpoints.MapPut("Update", async (PlayerViewModel playerViewModel, IMapper mapper, IMediator bus) => { 
-            await Task.Delay(1000);
-            return Results.Ok();
-        });
-        
-        endpoints.MapDelete("Delete", async (Guid id, IMapper mapper, IMediator bus) =>
+        endpoints.MapPut($"{EndpointPathMapping.Players}", async (PlayerViewModel playerViewModel, IMapper mapper, IMediator bus) =>
         {
+            if (playerViewModel is null)
+                return Results.BadRequest("playerViewModel não pode ser nulo");
+
+            await Task.Delay(1000);
+            return Results.Ok();
+        });
+        
+        endpoints.MapDelete($"{EndpointPathMapping.Players}/{{id:guid}}", async (Guid id, IMapper mapper, IMediator bus) =>
+        {
+            if (id == Guid.Empty)
+                return Results.BadRequest("guid não pode ser nulo");
+            
             await Task.Delay(1000);
             return Results.Ok();
         });
