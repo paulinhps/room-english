@@ -1,12 +1,16 @@
 using AutoMapper;
 
+using RoomsEnglish.Application.PlayerContext.ViewModels;
+
+using RoomsEnglish.Domain.PlayerContext.Entities;
+
 namespace RoomsEnglish.Application.PlayerContext.GetPlayers;
 
 public class PlayersMappingProfile : Profile
 {
     public PlayersMappingProfile()
     {
-        //CreateMap<PlayerViewModel, GetPlayerByIdQuery>();
-        CreateMap<Guid, GetPlayersQuery>();
+        CreateMap<IEnumerable<Player>, IEnumerable<PlayerViewModel>>()
+            .ReverseMap();
     }
 }
