@@ -10,7 +10,7 @@ public class PlayerMappingProfile : Profile
     public PlayerMappingProfile()
     {
         CreateMap<Guid, GetPlayerByIdQuery>()
-            .ForMember(x => x.Id, x => x.MapFrom(x => x));
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
         CreateMap<Player, PlayerViewModel>();
     }
 }
