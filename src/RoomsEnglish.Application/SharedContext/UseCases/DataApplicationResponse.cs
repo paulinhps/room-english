@@ -9,7 +9,7 @@ public class DataApplicationResponse<TData> : ApplicationResponse
 
     public DataApplicationResponse() : base()
     {
-        
+
     }
     public DataApplicationResponse(TData? data, EResponseType responseType, string message, params Error[] errors) : base(responseType, message, errors)
     {
@@ -17,4 +17,3 @@ public class DataApplicationResponse<TData> : ApplicationResponse
     }
 
 }
-

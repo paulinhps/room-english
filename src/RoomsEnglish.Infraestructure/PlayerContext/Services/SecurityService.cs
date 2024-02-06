@@ -1,7 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+
 using Microsoft.IdentityModel.Tokens;
+
 using RoomsEnglish.Domain.PlayerContext.Entities;
 using RoomsEnglish.Domain.PlayerContext.Services;
 using RoomsEnglish.Domain.SharedContext.ValueObjects;

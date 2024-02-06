@@ -1,5 +1,7 @@
 using AutoMapper;
+
 using Microsoft.Extensions.Logging;
+
 using RoomsEnglish.Application.SharedContext.UseCases;
 using RoomsEnglish.Domain.PlayerContext.Entities;
 using RoomsEnglish.Domain.PlayerContext.Repositories;
@@ -40,42 +42,43 @@ public class LoginPlayerHandler : HandlerBase<LoginPlayerCommand, DataApplicatio
         catch (Exception ex)
         {
             _logger.LogError(ex, "an error occur on find player by email");
-            
+
             NotificationContext.AddNotification("FindPlayerByEmail", "an error occur on find player by email");
         }
 
         if (!_securityService.IsValidUser(user, request.Password))
         {
             _logger.LogError("user name or password is invalid");
-            
+
             NotificationContext.AddNotification("LoginError", "user name or password is invalid");
 
         }
 
         // 3 - Generate AuthToken
-        if(!NotificationContext.ExistsNotifications) {
+        if (!NotificationContext.ExistsNotifications)
+        {
 
-        string authToken = _securityService.GenerateToken(user!);
+            string authToken = _securityService.GenerateToken(user!);
 
-        var loginResult = new LoginPlayerResult(authToken);
+            var loginResult = new LoginPlayerResult(authToken);
 
-        _mapper.Map(user, loginResult);
+            _mapper.Map(user, loginResult);
 
-         return ApplicationResponses.CreateResponse(
-            data: loginResult,
-            responseType: EResponseType.Success, 
-            $"authentication success"
-            );
+            return ApplicationResponses.CreateResponse(
+               data: loginResult,
+               responseType: EResponseType.Success,
+               $"authentication success"
+               );
 
         }
 
         // 4 - Make a AuthUserResult
-        
+
         return ApplicationResponses.CreateResponse<LoginPlayerResult>(
-            responseType: EResponseType.ProccessError, 
-            $"authentication failure", 
+            responseType: EResponseType.ProccessError,
+            $"authentication failure",
             NotificationContext.GetErrors()
             );
     }
-    
+
 }

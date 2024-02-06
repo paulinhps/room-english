@@ -1,7 +1,9 @@
 using AutoMapper;
 
 using FluentValidation;
+
 using MediatR;
+
 using RoomsEnglish.Application.SharedContext.Extensions;
 using RoomsEnglish.Application.SharedContext.UseCases;
 using RoomsEnglish.Domain.SharedContext.Constants;
@@ -23,16 +25,17 @@ where TCommand : notnull, AbstractRequest<TResult>
     public async Task<TResult> Handle(TCommand request, RequestHandlerDelegate<TResult> next, CancellationToken cancellationToken)
     {
 
-       var failures = _validators
-               .Select(v => v.Validate(request))
-               .SelectMany(x => x.Errors)
-               .Where(f => f != null)
-               .ToList();
+        var failures = _validators
+                .Select(v => v.Validate(request))
+                .SelectMany(x => x.Errors)
+                .Where(f => f != null)
+                .ToList();
 
         if (failures.Any())
         {
 
-            var errorCommandResult = new TResult() {
+            var errorCommandResult = new TResult()
+            {
                 ResponseType = EResponseType.InputedError,
                 Message = "request is not valid",
                 Errors = failures.GetErrors()
@@ -44,15 +47,17 @@ where TCommand : notnull, AbstractRequest<TResult>
 
         var result = await next();
 
-        if(_notification.ExistsNotifications) {
+        if (_notification.ExistsNotifications)
+        {
             try
             {
-                var errorCommandResult = new TResult() {
-                ResponseType = _notification.ErrorResponseType,
-                Message = "request is not valid",
-                Errors = _notification.GetErrors()
-            };
-            return errorCommandResult;
+                var errorCommandResult = new TResult()
+                {
+                    ResponseType = _notification.ErrorResponseType,
+                    Message = "request is not valid",
+                    Errors = _notification.GetErrors()
+                };
+                return errorCommandResult;
             }
             catch (System.Exception ex)
             {
@@ -64,4 +69,3 @@ where TCommand : notnull, AbstractRequest<TResult>
         return result;
     }
 }
-

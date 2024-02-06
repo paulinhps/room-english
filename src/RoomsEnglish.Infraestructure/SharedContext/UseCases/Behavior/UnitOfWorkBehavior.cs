@@ -1,5 +1,7 @@
 using MediatR;
+
 using Microsoft.Extensions.Logging;
+
 using RoomsEnglish.Application.Data;
 using RoomsEnglish.Application.SharedContext.UseCases;
 using RoomsEnglish.Domain.SharedContext.Constants;

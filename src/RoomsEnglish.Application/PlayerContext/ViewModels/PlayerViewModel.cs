@@ -7,5 +7,5 @@ public class PlayerViewModel
     public int Level { get; set; }
     public int Experience { get; set; }
 
-    
+
 }
