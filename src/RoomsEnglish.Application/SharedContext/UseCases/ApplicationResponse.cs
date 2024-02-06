@@ -9,7 +9,7 @@ public abstract class ApplicationResponse
 
     public ApplicationResponse()
     {
-        
+
     }
     protected ApplicationResponse(EResponseType responseType, string message, params Error[] errors)
     {
@@ -20,6 +20,6 @@ public abstract class ApplicationResponse
     public string? Message { get; init; }
     public virtual bool Success => Errors?.Any() is false;
     public EResponseType ResponseType { get; init; }
-   
+
 
 }

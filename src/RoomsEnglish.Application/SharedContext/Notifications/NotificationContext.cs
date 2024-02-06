@@ -24,11 +24,11 @@ public sealed class NotificationContext : INotificationContext
 
     public IEnumerable<Notification> GetNotifications() => _notifications;
     public Error[] GetErrors()
-        {
-           var errors =  _mapper.Map<IEnumerable<Error>>(_notifications).ToArray();
+    {
+        var errors = _mapper.Map<IEnumerable<Error>>(_notifications).ToArray();
 
-           return errors;
-        }
+        return errors;
+    }
 
     public void AddNotifications(params Notification[] notifications)
     {

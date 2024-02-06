@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 using RoomsEnglish.Domain.PlayerContext.Entities;
 
 namespace RoomsEnglish.Infraestructure.Mapping

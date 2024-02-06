@@ -1,5 +1,6 @@
 namespace RoomsEnglish.Application.SharedContext.UseCases;
 
-public abstract class RequestQuery<TResult> : AbstractRequest<DataApplicationResponse<TResult>> {
+public abstract class RequestQuery<TResult> : AbstractRequest<DataApplicationResponse<TResult>>
+{
 
 }

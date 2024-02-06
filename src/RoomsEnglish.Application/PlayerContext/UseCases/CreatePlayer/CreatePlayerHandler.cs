@@ -59,7 +59,7 @@ public class CreatePlayerHandler : HandlerBase<CreatePlayerCommand, DataApplicat
         }
 
         if (NotificationContext.ExistsNotifications) return default!;
-        
+
         // 3 - Instanciar um objeto do tipo ApplicationUser (Player)
         var password = _securityService.GeneratePassword(command.Password);
 
@@ -89,9 +89,9 @@ public class CreatePlayerHandler : HandlerBase<CreatePlayerCommand, DataApplicat
                 "An error occurred when trying to create a player");
             }
         }
-            NotificationContext.ErrorResponseType = EResponseType.ProccessError;
+        NotificationContext.ErrorResponseType = EResponseType.ProccessError;
 
-            return default!;
+        return default!;
 
     }
 }
