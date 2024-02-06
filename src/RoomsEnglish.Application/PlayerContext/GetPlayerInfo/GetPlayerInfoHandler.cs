@@ -1,4 +1,3 @@
-using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using RoomsEnglish.Application.PlayerContext.ViewModels;
@@ -10,13 +9,11 @@ public class GetPlayerInfoHandler : IRequestHandler<GetPlayerByIdQuery, QueryRes
 {
     private readonly IPlayerRepository _playerRepository;
     private readonly ILogger _logger;
-    private readonly IMapper _mapper;
 
-    public GetPlayerInfoHandler(IPlayerRepository playerRepository, ILogger<GetPlayerInfoHandler> logger, IMapper mapper)
+    public GetPlayerInfoHandler(IPlayerRepository playerRepository, ILogger<GetPlayerInfoHandler> logger)
     {
         _playerRepository = playerRepository;
         _logger = logger;
-        _mapper = mapper;
     }
 
     public async Task<QueryResult<PlayerViewModel>> Handle(GetPlayerByIdQuery request, CancellationToken cancellationToken)
@@ -27,21 +24,25 @@ public class GetPlayerInfoHandler : IRequestHandler<GetPlayerByIdQuery, QueryRes
         try
         {
             var player = await _playerRepository.FindPlayerByIdAsync(request.Id, cancellationToken);
-            return new QueryResult<PlayerViewModel>()
-            {
-                Data = _mapper.Map<PlayerViewModel>(player)
-            };
+            //TODO: Mapper para PlayerViewModel
+            var result = new QueryResult<PlayerViewModel>();
+            return result;
+            //result.Data = PlayerViewModel
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "player not found.");
             // TODO: Implements error results
-            // TODO: Change this to Autommaper
-            return new QueryResult<PlayerViewModel>()
-            {
-                MessageCode = 400,
-                Message = "error!",
-            };
+            var errors = new QueryResult<PlayerViewModel>(
+                // criar no constructor da base
+            );
         }
+
+        // TODO: Change this to Autommaper
+        return new QueryResult<PlayerViewModel>()
+        {
+            MessageCode = 400,
+            Message = "error!",
+        };
     }
 }
