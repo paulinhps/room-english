@@ -4,6 +4,6 @@ namespace RoomsEnglish.Api.Constants
     {
         private static string PathBase => "/api/v1";
         public static string Auth => $"{PathBase}/auth";
-        public static string Player => $"{PathBase}/player";
+        public static string Players => $"{PathBase}/players";
     }
 }

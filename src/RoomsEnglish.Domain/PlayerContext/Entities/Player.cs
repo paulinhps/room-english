@@ -20,6 +20,3 @@ public class Player : Entity, IApplicationUser
         Experience = experience;
     }
 }
-
-
-// TODO: vamos utilizar um serviço para calcular Nível baseado na experiência Isso porque vamos criar eventos com gatilhos que vai fazer atualização da sessão quando o player ganhar experiência.
