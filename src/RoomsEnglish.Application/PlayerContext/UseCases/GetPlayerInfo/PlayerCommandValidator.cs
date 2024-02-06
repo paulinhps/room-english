@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace RoomsEnglish.Application.PlayerContext.GetPlayerInfo;
+namespace RoomsEnglish.Application.PlayerContext.UseCases.GetPlayerInfo;
 
 public class GetPlayerByIdQueryValidator : AbstractValidator<GetPlayerByIdQuery>
 {

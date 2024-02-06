@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace RoomsEnglish.Application.PlayerContext.GetPlayerInfo;
+namespace RoomsEnglish.Application.PlayerContext.UseCases.GetPlayerInfo;
 
 public class PlayerMappingProfile : Profile
 {

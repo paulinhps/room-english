@@ -4,7 +4,7 @@ public interface IPlayerRepository
 {
     Task<Player> CreatePlayerAsync(Player user);
     Task<bool> ExistsPlayerWithEmailAsync(string email);
-    Task<Player?> FindPlayerByIdAsync(Guid playerId, CancellationToken cancellationToken);
+    Task<Player> FindPlayerByIdAsync(Guid playerId, CancellationToken cancellationToken);
     Task<IApplicationUser?> FindPlayerByEmailAsync(string userEmail, CancellationToken cancellationToken);
     Task<IEnumerable<Player>> GetPlayersAsync(CancellationToken cancellationToken);
 }
