@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 
 using MediatR;
-
 using RoomsEnglish.Api.Constants;
 using RoomsEnglish.Application.PlayerContext.UseCases.CreatePlayer;
 using RoomsEnglish.Application.PlayerContext.UseCases.GetPlayerInfo;
