@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-
-using Microsoft.AspNetCore.Http.HttpResults;
-
-
 using RoomsEnglish.Api.Constants;
 using RoomsEnglish.Application.PlayerContext.GetPlayerInfo;
 using RoomsEnglish.Application.PlayerContext.UseCases.CreatePlayer;
@@ -32,7 +28,7 @@ public static class PlayerEndpoints
         endpoints.MapGet($"{EndpointPathMapping.Players}", async (IMapper mapper, IMediator bus) => {
             var command = new GetPlayersQuery();
             var result = await bus.Send(command);
-            return result;
+            return result.Success ? Results.Ok(result) : Results.BadRequest(result);
         });
         
         endpoints.MapGet($"{EndpointPathMapping.Players}/{{id:guid}}", async (Guid id, IMapper mapper, IMediator bus) =>
