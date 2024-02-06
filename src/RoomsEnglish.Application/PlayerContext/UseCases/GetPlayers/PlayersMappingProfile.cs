@@ -1,10 +1,9 @@
 using AutoMapper;
 
 using RoomsEnglish.Application.PlayerContext.ViewModels;
-
 using RoomsEnglish.Domain.PlayerContext.Entities;
 
-namespace RoomsEnglish.Application.PlayerContext.GetPlayers;
+namespace RoomsEnglish.Application.PlayerContext.UseCases.GetPlayers;
 
 public class PlayersMappingProfile : Profile
 {

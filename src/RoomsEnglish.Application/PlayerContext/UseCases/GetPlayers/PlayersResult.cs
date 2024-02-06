@@ -1,6 +1,6 @@
 using RoomsEnglish.Application.PlayerContext.ViewModels;
 
-namespace RoomsEnglish.Application.PlayerContext.GetPlayers;
+namespace RoomsEnglish.Application.PlayerContext.UseCases.GetPlayers;
 
 public class QueryResult<T>
 {
