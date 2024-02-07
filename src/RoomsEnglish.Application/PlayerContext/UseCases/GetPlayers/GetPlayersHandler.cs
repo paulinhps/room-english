@@ -1,7 +1,5 @@
 using AutoMapper;
-
 using Microsoft.Extensions.Logging;
-
 using RoomsEnglish.Application.PlayerContext.ViewModels;
 using RoomsEnglish.Application.SharedContext.UseCases;
 using RoomsEnglish.Domain.PlayerContext.Repositories;

@@ -27,10 +27,16 @@ public class GetPlayerInfoHandler : HandlerBase<GetPlayerByIdQuery, DataApplicat
     public async override Task<DataApplicationResponse<PlayerViewModel>> Handle(GetPlayerByIdQuery request, CancellationToken cancellationToken)
     {
         // TODO: Implements a AuthHandler
-
         try
         {
             var players = await _playerRepository.FindPlayerByIdAsync(request.Id, cancellationToken);
+            if (players == null)
+            {
+                const string msg = "player not exist.";
+                NotificationContext.ErrorResponseType = EResponseType.NotFoundError;
+                NotificationContext.AddNotification(new Notification("GetPlayerInfoError", msg));
+                return default!;
+            }
             var playersViewModel = _mapper.Map<PlayerViewModel>(players);
             return ApplicationResponses.CreateResponse(playersViewModel, EResponseType.Success, "Retornando lista de pessoas");
         }
