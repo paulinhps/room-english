@@ -43,6 +43,6 @@ public static class PlayerEndpoints
             return result.Success ? Results.Ok(result) : Results.BadRequest(result);
         }).WithName("CreatePlayerId")
             .WithTags(s_tags);
-        
+
     }
 }
