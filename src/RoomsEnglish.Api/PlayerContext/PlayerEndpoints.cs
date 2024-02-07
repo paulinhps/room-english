@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-
 using MediatR;
-
 using RoomsEnglish.Api.Constants;
 using RoomsEnglish.Application.PlayerContext.UseCases.CreatePlayer;
 using RoomsEnglish.Application.PlayerContext.UseCases.GetPlayerInfo;
@@ -45,24 +43,6 @@ public static class PlayerEndpoints
             return result.Success ? Results.Ok(result) : Results.BadRequest(result);
         }).WithName("CreatePlayerId")
             .WithTags(s_tags);
-
-
-        endpoints.MapPut($"{EndpointPathMapping.Players}", async (PlayerViewModel playerViewModel, IMapper mapper, IMediator bus) =>
-        {
-            if (playerViewModel is null)
-                return Results.BadRequest("playerViewModel não pode ser nulo");
-
-            await Task.Delay(1000);
-            return Results.Ok();
-        });
-
-        endpoints.MapDelete($"{EndpointPathMapping.Players}/{{id:guid}}", async (Guid id, IMapper mapper, IMediator bus) =>
-        {
-            if (id == Guid.Empty)
-                return Results.BadRequest("guid não pode ser nulo");
-
-            await Task.Delay(1000);
-            return Results.Ok();
-        });
+        
     }
 }
