@@ -12,22 +12,22 @@ namespace RoomsEnglish.Api.PlayerContext;
 
 public static class PlayerEndpoints
 {
-    private readonly static string[] s_tags = ["Players"];
+    private readonly static string[] s_tags = ["Player"];
 
     public static void MapPlayerEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapPost(EndpointPathMapping.Players, async (CreatePlayerViewModel createPlayer, IMapper mapper, IMediator bus) =>
+        endpoints.MapPost(EndpointPathMapping.Player, async (CreatePlayerViewModel createPlayer, IMapper mapper, IMediator bus) =>
         {
             var result = await bus.Send(mapper.Map<CreatePlayerCommand>(createPlayer));
 
-            if (result.Success) return Results.Created($"{EndpointPathMapping.Players}/{result.Data!.PlayerId}", result);
+            if (result.Success) return Results.Created($"{EndpointPathMapping.Player}/{result.Data!.PlayerId}", result);
 
             return Results.BadRequest(result);
         }).WithName("CreatePlayer")
             .WithTags(s_tags);
 
         //Get Players
-        endpoints.MapGet($"{EndpointPathMapping.Players}", async (IMapper mapper, IMediator bus) =>
+        endpoints.MapGet($"{EndpointPathMapping.Player}", async (IMapper mapper, IMediator bus) =>
         {
             var command = new GetPlayersQuery();
             var result = await bus.Send(command);
@@ -35,7 +35,7 @@ public static class PlayerEndpoints
         });
 
         //Get Player Id
-        endpoints.MapGet($"{EndpointPathMapping.Players}/{{id:guid}}", async (Guid id, IMapper mapper, IMediator bus) =>
+        endpoints.MapGet($"{EndpointPathMapping.Player}/{{id:guid}}", async (Guid id, IMapper mapper, IMediator bus) =>
         {
             //TODO: Validar o GUID
             if (id == Guid.Empty)
@@ -44,10 +44,11 @@ public static class PlayerEndpoints
             var command = mapper.Map<GetPlayerByIdQuery>(id);
             var result = await bus.Send(command);
             return result.Success ? Results.Ok(result) : Results.BadRequest(result);
-        });
+        }).WithName("CreatePlayerId")
+            .WithTags(s_tags);
 
 
-        endpoints.MapPut($"{EndpointPathMapping.Players}", async (PlayerViewModel playerViewModel, IMapper mapper, IMediator bus) =>
+        endpoints.MapPut($"{EndpointPathMapping.Player}", async (PlayerViewModel playerViewModel, IMapper mapper, IMediator bus) =>
         {
             if (playerViewModel is null)
                 return Results.BadRequest("playerViewModel não pode ser nulo");
@@ -56,7 +57,7 @@ public static class PlayerEndpoints
             return Results.Ok();
         });
 
-        endpoints.MapDelete($"{EndpointPathMapping.Players}/{{id:guid}}", async (Guid id, IMapper mapper, IMediator bus) =>
+        endpoints.MapDelete($"{EndpointPathMapping.Player}/{{id:guid}}", async (Guid id, IMapper mapper, IMediator bus) =>
         {
             if (id == Guid.Empty)
                 return Results.BadRequest("guid não pode ser nulo");

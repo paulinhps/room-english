@@ -1,4 +1,3 @@
-
 using MediatR;
 
 namespace RoomsEnglish.Application.SharedContext.UseCases;
